@@ -19,18 +19,14 @@ struct DetailView<T>: View where T: DetailViewPresenterProtocol {
                     Button {
                         presenter.selectInformation(information: information)
                     } label: {
-                        image(information: information)
+                        switch information {
+                        case .mail: Image(systemName: "mail")
+                        case .phone: Image(systemName: "phone")
+                        case .profile: Image(systemName: "person")
+                        }
                     }
                 }
             }
-        }
-    }
-    
-    @ViewBuilder func image(information: DisplayedInformation) -> some View {
-        switch information {
-        case .mail: Image(systemName: "mail")
-        case .phone: Image(systemName: "phone")
-        case .profile: Image(systemName: "person")
         }
     }
 }
