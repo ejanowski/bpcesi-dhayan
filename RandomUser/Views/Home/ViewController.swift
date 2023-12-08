@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
@@ -24,7 +25,15 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if let user = presenter?.user(for: indexPath) {
+            let presenter = DetailViewPresenter(user: user)
+            let detail = DetailView(presenter: presenter)
+            let controller = UIHostingController(rootView: detail)
+            navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource {

@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import UIKit
 
 class ViewControllerPresenter {
     private let disposeBag = DisposeBag()
@@ -31,6 +32,10 @@ extension ViewControllerPresenter: ViewControllerPresenterProtocol {
     
     func numberOfUsers() -> Int {
         return users.count
+    }
+    
+    func user(for indexPath: IndexPath) -> User {
+        users[indexPath.row]
     }
     
     func didLoad() {
