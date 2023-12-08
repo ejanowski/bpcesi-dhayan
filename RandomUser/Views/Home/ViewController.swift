@@ -6,13 +6,20 @@
 //
 
 import UIKit
-import RxSwift
 
 class ViewController: UIViewController {
-    let disposeBag = DisposeBag()
+    @IBOutlet weak var tableView: UITableView!
+    
+    var presenter: ViewControllerPresenterProtocol?
 
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        presenter = ViewControllerPresenter(view: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.didLoad()
     }
 }
 
@@ -22,10 +29,17 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+        presenter?.numberOfUsers() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell") as? UserTableViewCell else { return UITableViewCell() }
+        return presenter!.composeCell(for: indexPath, cell: cell)
+    }
+}
+
+extension ViewController: ViewControllerProtocol {
+    func reloadDonnee() {
+        tableView.reloadData()
     }
 }

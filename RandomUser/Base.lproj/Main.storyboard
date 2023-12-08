@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qfI-Dv-zf9">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -21,10 +22,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserTableViewCell" id="rFV-fH-lVD" customClass="UserTableViewCell" customModule="RandomUser" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="49"/>
+                                        <rect key="frame" x="0.0" y="50" width="393" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rFV-fH-lVD" id="5FG-16-T1v">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="4Qg-gm-tlY">
@@ -46,14 +47,22 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="4Qg-gm-tlY" secondAttribute="bottom" id="9vL-s6-FZR"/>
+                                                <constraint firstAttribute="bottom" secondItem="4Qg-gm-tlY" secondAttribute="bottom" constant="16" id="9vL-s6-FZR"/>
                                                 <constraint firstItem="4Qg-gm-tlY" firstAttribute="top" secondItem="5FG-16-T1v" secondAttribute="top" id="TiY-li-6pi"/>
                                                 <constraint firstItem="4Qg-gm-tlY" firstAttribute="leading" secondItem="5FG-16-T1v" secondAttribute="leading" id="YWq-tw-TpW"/>
                                                 <constraint firstAttribute="trailing" secondItem="4Qg-gm-tlY" secondAttribute="trailing" id="lIm-Jx-1AM"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="subtitleLabel" destination="1DS-Vk-azC" id="WEa-Hz-YlA"/>
+                                            <outlet property="titleLabel" destination="vuY-4f-OAr" id="G7d-2W-tNy"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="ghp-cz-gCk"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ZOq-x4-Rh5"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -66,6 +75,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mcd-oH-bl6"/>
+                    <connections>
+                        <outlet property="tableView" destination="h9K-kz-o1c" id="eH7-13-sed"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
