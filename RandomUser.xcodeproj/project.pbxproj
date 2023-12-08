@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		562702AB2B230ADA002BCC62 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562702AA2B230ADA002BCC62 /* UserTableViewCell.swift */; };
 		5658106D2B1FCC9200D44902 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5658106C2B1FCC9200D44902 /* Gender.swift */; };
 		5658106F2B1FCCA700D44902 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5658106E2B1FCCA700D44902 /* Picture.swift */; };
 		565810712B1FCCBB00D44902 /* Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565810702B1FCCBB00D44902 /* Name.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		562702AA2B230ADA002BCC62 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		5658106C2B1FCC9200D44902 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		5658106E2B1FCCA700D44902 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		565810702B1FCCBB00D44902 /* Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Name.swift; sourceTree = "<group>"; };
@@ -55,6 +57,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		562702A82B230AB2002BCC62 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				562702A92B230ABA002BCC62 /* Home */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		562702A92B230ABA002BCC62 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				56C6173F2B1781BC00D8D7B7 /* ViewController.swift */,
+				562702AA2B230ADA002BCC62 /* UserTableViewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		5658106B2B1FCC7600D44902 /* ObjectRepresentations */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,7 +115,7 @@
 				56DE191E2B18DA8000C2445F /* Network */,
 				56C6173B2B1781BC00D8D7B7 /* AppDelegate.swift */,
 				56C6173D2B1781BC00D8D7B7 /* SceneDelegate.swift */,
-				56C6173F2B1781BC00D8D7B7 /* ViewController.swift */,
+				562702A82B230AB2002BCC62 /* Views */,
 				56C617412B1781BC00D8D7B7 /* Main.storyboard */,
 				56C617442B1781BC00D8D7B7 /* Assets.xcassets */,
 				56C617462B1781BC00D8D7B7 /* LaunchScreen.storyboard */,
@@ -198,6 +217,7 @@
 				56C6173C2B1781BC00D8D7B7 /* AppDelegate.swift in Sources */,
 				56C6173E2B1781BC00D8D7B7 /* SceneDelegate.swift in Sources */,
 				56DE19242B18DB6F00C2445F /* NetworkError.swift in Sources */,
+				562702AB2B230ADA002BCC62 /* UserTableViewCell.swift in Sources */,
 				5658106F2B1FCCA700D44902 /* Picture.swift in Sources */,
 				56DE19222B18DACF00C2445F /* User.swift in Sources */,
 				565810712B1FCCBB00D44902 /* Name.swift in Sources */,

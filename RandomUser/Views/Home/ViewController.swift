@@ -13,12 +13,6 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UserProvider()
-            .getUsers()
-            .subscribe(onSuccess: {
-            print("getUsers \($0)")
-        })
-        .disposed(by: disposeBag)
     }
 }
 
