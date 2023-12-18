@@ -12,7 +12,7 @@ struct DetailView<T>: View where T: DetailViewPresenterProtocol {
     
     var body: some View {
         VStack(spacing: 8) {
-            AsyncImage(url: presenter.avatarURL)
+            AsyncImage(url: presenter.avatarURL, scale: 0.4)
             Text(presenter.displayedInformation)
             HStack {
                 ForEach(DisplayedInformation.allCases, id: \.self) { information in

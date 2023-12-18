@@ -9,27 +9,18 @@ import Foundation
 import RxSwift
 import UIKit
 
-class ViewControllerPresenter {
+class ViewControllerPresenter: ObservableObject {
     private let disposeBag = DisposeBag()
     
-    var users: [User] = []
+    @Published var users: [User] = []
     
-    var view: ViewControllerProtocol?
-    init(view: ViewController) {
-        self.view = view
+    @Published var view: ViewControllerProtocol?
+    init() {
     }
 }
 
 extension ViewControllerPresenter: ViewControllerPresenterProtocol {
-    func composeCell(for index: IndexPath, cell: UserTableViewCell) -> UserTableViewCell {
-        let user = users[index.row]
-    
-        cell.titleLabel.text = user.name.first + " " + user.name.last
-        cell.subtitleLabel.text = user.gender.rawValue
-        
-        return cell
-    }
-    
+ 
     func numberOfUsers() -> Int {
         return users.count
     }
@@ -42,9 +33,10 @@ extension ViewControllerPresenter: ViewControllerPresenterProtocol {
         UserProvider()
             .getUsers()
             .observe(on: MainScheduler.instance)
-            .subscribe {
-                self.users = $0
-                self.view!.reloadDonnee()
+            //Weak Self pour éviter les cycle de rétention
+            .subscribe { [weak self] users in
+                self?.users = users
+                self?.view?.reloadDonnee()
             }
             .disposed(by: disposeBag)
     }

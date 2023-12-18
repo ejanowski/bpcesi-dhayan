@@ -8,47 +8,31 @@
 import UIKit
 import SwiftUI
 
-class ViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
+struct ViewController: View {
     
-    var presenter: ViewControllerPresenterProtocol?
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        presenter = ViewControllerPresenter(view: self)
-    }
+    @ObservedObject private var presenter = ViewControllerPresenter()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        presenter?.didLoad()
-    }
-}
-
-extension ViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        if let user = presenter?.user(for: indexPath) {
-            let presenter = DetailViewPresenter(user: user)
-            let detail = DetailView(presenter: presenter)
-            let controller = UIHostingController(rootView: detail)
-            navigationController?.pushViewController(controller, animated: true)
+    var body: some View {
+        NavigationView {
+            List(presenter.users, id: \.email) { user in
+                NavigationLink(
+                    destination: DetailView(presenter: DetailViewPresenter(user: user)),
+                    label: {
+                        UserCell(user: user)
+                    }
+                )
+            }
+            .onAppear {
+                presenter.didLoad()
+            }
+            .navigationTitle("Users")
         }
     }
 }
 
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter?.numberOfUsers() ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserTableViewCell") as? UserTableViewCell else { return UITableViewCell() }
-        return presenter!.composeCell(for: indexPath, cell: cell)
-    }
-}
-
-extension ViewController: ViewControllerProtocol {
-    func reloadDonnee() {
-        tableView.reloadData()
+// Définit un aperçu pour la prévisualisation de la vue SwiftUI
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewController()
     }
 }
