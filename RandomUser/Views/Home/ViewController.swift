@@ -6,26 +6,33 @@
 //
 
 import UIKit
-import RxSwift
+import SwiftUI
 
-class ViewController: UIViewController {
-    let disposeBag = DisposeBag()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+struct ViewController: View {
+    
+    @ObservedObject private var presenter = ViewControllerPresenter()
+    
+    var body: some View {
+        NavigationView {
+            List(presenter.users, id: \.email) { user in
+                NavigationLink(
+                    destination: DetailView(presenter: DetailViewPresenter(user: user)),
+                    label: {
+                        UserCell(user: user)
+                    }
+                )
+            }
+            .onAppear {
+                presenter.didLoad()
+            }
+            .navigationTitle("Users")
+        }
     }
 }
 
-extension ViewController: UITableViewDelegate {
-    
-}
-
-extension ViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+// Définit un aperçu pour la prévisualisation de la vue SwiftUI
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewController()
     }
 }
